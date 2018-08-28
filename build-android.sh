@@ -414,7 +414,6 @@ then
           sed "s/%ARCH%/${JAMARCH}/g" configs/user-config-boost-${BOOST_VER}-common.jam >> $BOOST_DIR/tools/build/src/user-config.jam || exit 1
           cat configs/user-config-boost-${BOOST_VER}-$ARCH.jam >> $BOOST_DIR/tools/build/src/user-config.jam || exit 1
           echo ';' >> $BOOST_DIR/tools/build/src/user-config.jam || exit 1
-          sed 's/{/(/g;s/}/)/g;' $BOOST_DIR/tools/build/src/user-config.jam > $BOOST_DIR/tools/build/src/user-config.jam || exit 1
       done
   else
       cp configs/user-config-boost-${BOOST_VER}.jam $BOOST_DIR/tools/build/v2/user-config.jam || exit 1
@@ -473,7 +472,6 @@ echo "Building boost for android for $ARCH"
       echo "boost_locale selected - compiling ICONV and ICU"
       git clone https://github.com/TomasBedrnik/libiconv-libicu-android.git
       cd libiconv-libicu-android
-      export PATH=$PATH:$AndroidNDKRoot
       ./build.sh || exit 1
       cd ..
     fi

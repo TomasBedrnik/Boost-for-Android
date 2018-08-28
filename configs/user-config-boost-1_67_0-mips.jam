@@ -1,5 +1,5 @@
 <compileflags>-gcc-toolchain
-<compileflags>$(AndroidNDKRoot)/toolchains/mips64el-linux-android-4.9/prebuilt/${PlatformOS}-x86_64
+<compileflags>$(AndroidNDKRoot)/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64
 <compileflags>-target
 <compileflags>mipsel-none-linux-android
 <compileflags>-mips32
@@ -9,3 +9,9 @@
 <compileflags>-isystem
 <compileflags>$(AndroidNDKRoot)/sysroot/usr/include/mipsel-linux-android
 <compileflags>-D__ANDROID_API__=15
+<linkflags>-gcc-toolchain
+<linkflags>$(AndroidNDKRoot)/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64
+<linkflags>-target
+<linkflags>mipsel-none-linux-android
+<linkflags>--sysroot
+<linkflags>$(AndroidNDKRoot)/platforms/android-15/arch-mips/
