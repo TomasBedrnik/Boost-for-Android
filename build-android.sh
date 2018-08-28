@@ -471,6 +471,7 @@ echo "Building boost for android for $ARCH"
     else
       echo "boost_locale selected - compiling ICONV and ICU"
       git clone https://github.com/TomasBedrnik/libiconv-libicu-android.git
+      export PATH=$PATH:$AndroidNDKRoot
       cd libiconv-libicu-android
       ./build.sh || exit 1
       cd ..
@@ -526,13 +527,11 @@ echo "Building boost for android for $ARCH"
          link=static                  \
          threading=multi              \
          --layout=versioned           \
-         $WITHOUT_LIBRARIES           \
          -sICONV_PATH=`pwd`/../libiconv-libicu-android/$ARCH \
          -sICU_PATH=`pwd`/../libiconv-libicu-android/$ARCH \
          --build-dir="./../$BUILD_DIR/build/$ARCH" \
          --prefix="./../$BUILD_DIR/out/$ARCH" \
-         $LIBRARIES                   \
-         $LIBRARIES_BROKEN            \
+         --with-locale                   \
          install 2>&1                 \
          || { dump "ERROR: Failed to build boost for android for $ARCH!" ; rm -rf ./../$BUILD_DIR/out/$ARCH ; exit 1 ; }
   } | tee -a $PROGDIR/build.log
