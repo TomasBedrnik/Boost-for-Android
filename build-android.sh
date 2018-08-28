@@ -527,11 +527,13 @@ echo "Building boost for android for $ARCH"
          link=static                  \
          threading=multi              \
          --layout=versioned           \
+         $WITHOUT_LIBRARIES           \
          -sICONV_PATH=`pwd`/../libiconv-libicu-android/$ARCH \
          -sICU_PATH=`pwd`/../libiconv-libicu-android/$ARCH \
          --build-dir="./../$BUILD_DIR/build/$ARCH" \
          --prefix="./../$BUILD_DIR/out/$ARCH" \
-         --with-locale                   \
+         $LIBRARIES                   \
+         $LIBRARIES_BROKEN            \
          install 2>&1                 \
          || { dump "ERROR: Failed to build boost for android for $ARCH!" ; rm -rf ./../$BUILD_DIR/out/$ARCH ; exit 1 ; }
   } | tee -a $PROGDIR/build.log
